@@ -3,13 +3,13 @@ import Navbar from "./Components/Navbar";
 import TextForm from "./Components/TextForm";
 import React, { useState } from 'react'
 import Alert from "./Components/Alert";
-// import About from "./Components/About";
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
+import About from "./Components/About";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
   
-// } from "react-router-dom";
+} from "react-router-dom";
 
 
 function App() {
@@ -55,20 +55,20 @@ const showAlert = (message,type)=>{
 
   return (
     <>
-    {/* <Router> */}
+    <Router>
       <Navbar title="TextUtils" mode={mode}  toggleMode={toggleMode} yellowMode={yellowMode} ></Navbar>
       <Alert alert={alert}/>
       <div className="container my-3">
-      {/* <Switch> */}
-          {/* <Route exact path="/about"> */}
-            {/* <About /> */}
-          {/* </Route> */}
-          {/* <Route exact path="/"> */}
+      <Switch>
+          <Route exact path="/about">
+            <About />
+          </Route>
+          <Route exact path="/">
       <TextForm showAlert={showAlert} mode={mode} heading="Enter Text to analyze"/>
-          {/* </Route> */}
-        {/* </Switch> */}
+          </Route>
+        </Switch>
       </div>
-      {/* </Router> */}
+      </Router>
     </>
   );
 }
