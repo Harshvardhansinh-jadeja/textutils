@@ -20,6 +20,7 @@ export default function TextForm(props) {
         let text = document.getElementById('myBox')
         text.select()
         navigator.clipboard.writeText(text.value)
+        document.getSelection().removeAllRanges()
         props.showAlert("Copied Text" , "success")
 
     }
@@ -50,17 +51,17 @@ export default function TextForm(props) {
             <div className="mb-3">
             <textarea className="form-control" onChange={handleOnChange} style={{backgroundColor :props.mode === 'light' ?'white' : '#263b5a',color : props.mode === 'dark' ? 'white':'black' }} value={text} id="myBox" rows="8"></textarea>
             </div>
-            <button className="btn btn-primary" onClick={handleUpClick}>Convert to Uppercase </button>
-            <button className="btn btn-primary mx-3" onClick={handleLowClick}>Convert to LowerCase </button>
-            <button className="btn btn-danger mx-3" onClick={handleClearClick}>Clear Text</button>
-            <button className="btn btn-primary mx-3" onClick={handleCopy}>Copy Text</button>
-            <button className="btn btn-secondary mx-3" onClick={handleExtraSpace}>Clear Extra Spaces</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-3 my-1" onClick={handleUpClick}>Convert to Uppercase </button>
+            <button disabled={text.length===0} className="btn btn-primary mx-3 my-1" onClick={handleLowClick}>Convert to LowerCase </button>
+            <button disabled={text.length===0} className="btn btn-danger mx-3 my-1" onClick={handleClearClick}>Clear Text</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-3 my-1" onClick={handleCopy}>Copy Text</button>
+            <button disabled={text.length===0} className="btn btn-secondary mx-3 my-1" onClick={handleExtraSpace}>Clear Extra Spaces</button>
         </div>
         <div className="container my-4" style={{color : props.mode === 'dark' ? 'white':'black'}}>
-            <p>{text.split(" ").length} Words and {text.length} Characters</p>
-            <p>You can read this article in {0.08 * text.split(" ").length} minutes </p>
+            <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} Words and {text.length} Characters</p>
+            <p>You can read this article in {0.08 * text.split(" ").filter((element)=>{return element.length!==0}).length} minutes </p>
             <h2>Preview</h2>
-            <p>{text.length>0 ? text : 'Enter Text to Preview'}</p>
+            <p>{text.length>0 ? text : 'Nothing to Preview'}</p>
         </div>
         </>
     )

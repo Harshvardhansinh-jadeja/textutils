@@ -61,10 +61,10 @@ const showAlert = (message,type)=>{
       <div className="container my-3">
       <Switch>
           <Route exact path="/about">
-            <About />
+            <About mode={mode} />
           </Route>
           <Route exact path="/">
-      <TextForm showAlert={showAlert} mode={mode} heading="Enter Text to analyze"/>
+      <TextForm showAlert={showAlert} mode={mode} heading="Word Counter, Character Counter, remove Extra Spaces"/>
           </Route>
         </Switch>
       </div>
