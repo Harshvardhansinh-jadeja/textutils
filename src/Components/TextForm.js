@@ -17,12 +17,8 @@ export default function TextForm(props) {
     }
 
     const handleCopy = ()=>{
-        let text = document.getElementById('myBox')
-        text.select()
-        navigator.clipboard.writeText(text.value)
-        document.getSelection().removeAllRanges()
+        navigator.clipboard.writeText(text)
         props.showAlert("Copied Text" , "success")
-
     }
 
     const handleClearClick = ()=>{
@@ -58,7 +54,7 @@ export default function TextForm(props) {
             <button disabled={text.length===0} className="btn btn-secondary mx-3 my-1" onClick={handleExtraSpace}>Clear Extra Spaces</button>
         </div>
         <div className="container my-4" style={{color : props.mode === 'dark' ? 'white':'black'}}>
-            <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} Words and {text.length} Characters</p>
+            <p>{text.split(/\s+/).filter((element)=>{return element.length!==0}).length} Words and {text.length} Characters</p>
             <p>You can read this article in {0.08 * text.split(" ").filter((element)=>{return element.length!==0}).length} minutes </p>
             <h2>Preview</h2>
             <p>{text.length>0 ? text : 'Nothing to Preview'}</p>
